@@ -39,6 +39,26 @@ function linearSearch(arr, target) {
     return -1;
 }
 
+function quickSort(arr, left = 0, right = arr.length - 1) {
+    if (left >= right) return;
+
+    let pivot = arr[right];
+    let i = left;
+
+    for (let j = left; j < right; j++) {
+        if (arr[j] < pivot) {
+            [arr[i], arr[j]] = [arr[j], arr[i]];
+            i++;
+        }
+    }
+
+    [arr[i], arr[right]] = [arr[right], arr[i]];
+
+    quickSort(arr, left, i - 1);
+    quickSort(arr, i + 1, right);
+    return arr;
+}
+
 function fibonacciRecursive(n) {
     if (n <= 1) return n;
     return fibonacciRecursive(n - 1) + fibonacciRecursive(n - 2);
