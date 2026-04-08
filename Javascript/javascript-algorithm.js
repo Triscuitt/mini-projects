@@ -51,3 +51,16 @@ function fibonacciDP(n){
     }
     return dp[n];
 }
+
+function estimateSpace(arr, algo) {
+    // Rough estimation: number of elements * 8 bytes(JS number)
+    const size = arr.length;
+    if (algo === "bubble" || algo === "binary" || algo === "linear") 
+        return size * 8;
+    else if (algo === "merge" || algo === "dp")
+        return size * 8 * 2;
+    else if (algo === "recursive")
+        return size * 8 * size;
+
+    return size * 8;
+}
