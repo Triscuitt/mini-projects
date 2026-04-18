@@ -81,6 +81,7 @@ button {
     background-color: rgb(233, 233, 233);
     border-radius: 10px;
     box-shadow: black 2px ;
+    border: black solid 1px;
 }
 
 .first-row, .second-row {
