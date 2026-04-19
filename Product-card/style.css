@@ -32,6 +32,7 @@ body {
     display: flex;
     font-family: 'Old Standard TT', sans-serif, Arial;
     font-weight: 400;
+    font-weight: bold;
     font-size: 40px;
     color: rgb(5, 51, 119);
 }
@@ -41,6 +42,15 @@ body {
     font-weight: bold;
     color: black;
     margin-bottom: 10px;
+}
+
+.material-icons {
+    font-size: 30px !important;
+    padding: 15px;
+    background-color: #dfd9d9;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: black solid 1px;
 }
 
 button {
@@ -91,13 +101,15 @@ button {
 }
 
 .card-content p {
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 }
 
 /* Hover */
 
 button:hover {
     background-color: rgb(128, 14, 143);
+    font-weight: bold;
+    transition: background ease 1.2;
 }
 
 .card-content:hover {
