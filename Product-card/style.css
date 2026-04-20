@@ -80,6 +80,7 @@ button {
     justify-content: center;
     text-align: center;
     max-width: 350px;
+    border: black solid 1px;
 }
 
 .card-content {
