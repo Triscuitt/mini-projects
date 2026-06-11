@@ -81,6 +81,7 @@ button {
     text-align: center;
     max-width: 350px;
     border: black solid 1px;
+    border-style: none;
 }
 
 .card-content {
