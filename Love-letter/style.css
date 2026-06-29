@@ -1,0 +1,466 @@
+/* ============================================================
+   FIRST MONTHSARY LOVE LETTER — style.css
+   Two-stage layout:
+     Stage 1 → .envelope-stage  (envelope + open button)
+     Stage 2 → .letter-stage    (photos + scrollable letter + close button)
+   ============================================================ */
+
+/* ---------- Tokens ---------- */
+:root {
+  --blush:        #f9d0d8;
+  --rose:         #e8637a;
+  --crimson:      #b22348;
+  --cream:        #fff8f4;
+  --gold:         #c8993a;
+  --shadow:       rgba(178, 35, 72, 0.18);
+  --font-display: 'Playfair Display', Georgia, serif;
+  --font-body:    'Lato', Arial, sans-serif;
+  --ease:         cubic-bezier(0.45, 0, 0.15, 1);
+}
+
+/* ---------- Reset ---------- */
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.01ms !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ---------- Body ---------- */
+html, body {
+  height: 100%;
+  min-height: 100vh;
+}
+
+body {
+  font-family: var(--font-body);
+  background: linear-gradient(145deg, #ffe4ec 0%, #fff0f4 50%, #fce8e8 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  overflow-x: hidden;
+  padding: 1.5rem 1rem;
+}
+
+/* ---------- Floating Hearts ---------- */
+.hearts-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 0;
+  overflow: hidden;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -60px;
+  opacity: 0;
+  animation: floatUp linear infinite;
+  user-select: none;
+}
+
+@keyframes floatUp {
+  0%   { transform: translateY(0) rotate(0deg);   opacity: 0.7; }
+  80%  { opacity: 0.4; }
+  100% { transform: translateY(-110vh) rotate(30deg); opacity: 0; }
+}
+
+/* ============================================================
+   STAGE 1 — ENVELOPE
+   ============================================================ */
+.envelope-stage {
+  position: relative;
+  z-index: 1;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 2rem;
+  /* fade out when letter opens */
+  transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.envelope-stage.hidden {
+  opacity: 0;
+  pointer-events: none;
+  transform: scale(0.95);
+  position: absolute; /* take out of flow so stage 2 can fill space */
+}
+
+.tagline {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.05rem;
+  color: var(--crimson);
+  letter-spacing: 0.03em;
+}
+
+/* ---------- Envelope ---------- */
+.envelope {
+  position: relative;
+  width: 380px;
+  height: 260px;
+  cursor: pointer;
+  transition: transform 0.4s var(--ease);
+}
+
+.envelope:hover:not(.is-open) {
+  transform: translateY(-6px) scale(1.02);
+}
+
+/* Back plate */
+.envelope-back {
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(160deg, #f5b8c4 0%, #e8637a 100%);
+  border-radius: 6px;
+  box-shadow:
+    0 10px 40px var(--shadow),
+    inset 0 1px 0 rgba(255,255,255,0.3);
+}
+
+/* Top flap */
+.envelope-flap {
+  position: absolute;
+  top: 0; left: 0;
+  width: 0; height: 0;
+  border-left:  190px solid transparent;
+  border-right: 190px solid transparent;
+  border-top:   130px solid #d94d6a;
+  transform-origin: top center;
+  transition: transform 0.7s var(--ease);
+  z-index: 3;
+  filter: drop-shadow(0 4px 8px rgba(0,0,0,0.12));
+}
+
+.envelope.is-open .envelope-flap {
+  transform: rotateX(-180deg);
+}
+
+/* Inner body */
+.envelope-body {
+  position: absolute;
+  inset: 30% 5% 5%;
+  background: linear-gradient(180deg, #fff0f4 0%, #ffe6ec 100%);
+  border-radius: 0 0 6px 6px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 1;
+}
+
+.envelope-seal {
+  font-size: 2.2rem;
+  filter: drop-shadow(0 2px 4px rgba(0,0,0,0.15));
+  transition: opacity 0.3s, transform 0.3s;
+}
+
+.envelope.is-open .envelope-seal {
+  opacity: 0;
+  transform: scale(0.6);
+}
+
+/* Side & bottom triangles */
+.envelope-front-left {
+  position: absolute;
+  left: 0; bottom: 0;
+  width: 0; height: 0;
+  border-bottom: 130px solid #f07090;
+  border-right:  190px solid transparent;
+  z-index: 2;
+}
+
+.envelope-front-right {
+  position: absolute;
+  right: 0; bottom: 0;
+  width: 0; height: 0;
+  border-bottom: 130px solid #e8607a;
+  border-left:   190px solid transparent;
+  z-index: 2;
+}
+
+.envelope-front-bottom {
+  position: absolute;
+  bottom: 0; left: 0; right: 0;
+  width: 0; height: 0;
+  border-left:   190px solid transparent;
+  border-right:  190px solid transparent;
+  border-bottom: 130px solid #d94d6a;
+  z-index: 2;
+}
+
+/* ---------- Open Button ---------- */
+.btn-open {
+  background: linear-gradient(135deg, var(--rose) 0%, var(--crimson) 100%);
+  color: #fff;
+  border: none;
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 1.1rem;
+  padding: 0.8rem 2.4rem;
+  border-radius: 30px;
+  cursor: pointer;
+  box-shadow: 0 6px 20px rgba(178,35,72,0.35);
+  transition: transform 0.25s, box-shadow 0.25s;
+  letter-spacing: 0.04em;
+}
+
+.btn-open:hover {
+  transform: translateY(-3px) scale(1.04);
+  box-shadow: 0 10px 28px rgba(178,35,72,0.45);
+}
+
+.btn-open:active { transform: scale(0.97); }
+
+/* ============================================================
+   STAGE 2 — LETTER
+   ============================================================ */
+.letter-stage {
+  position: relative;
+  z-index: 1;
+  display: none;           /* hidden until JS switches stage */
+  align-items: flex-start;
+  justify-content: center;
+  gap: 2rem;
+  width: 100%;
+  max-width: 1000px;
+  padding-top: 1rem;
+  /* entrance animation */
+  opacity: 0;
+  transform: translateY(30px);
+  transition: opacity 0.6s ease, transform 0.6s var(--ease);
+}
+
+.letter-stage.visible {
+  display: flex;
+  opacity: 0;             /* JS adds .show a frame later to trigger transition */
+  transform: translateY(30px);
+}
+
+.letter-stage.show {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* ---------- Letter Card ---------- */
+.letter-card {
+  flex: 0 0 360px;
+  width: 360px;
+  max-height: 80vh;
+  display: flex;
+  flex-direction: column;
+  background-image:
+    repeating-linear-gradient(
+      0deg,
+      transparent,
+      transparent 27px,
+      rgba(200,153,58,0.07) 28px
+    ),
+    linear-gradient(160deg, #fff8f4 0%, #fff0f0 100%);
+  background-color: var(--cream);
+  border-radius: 10px;
+  box-shadow:
+    0 8px 48px var(--shadow),
+    inset 0 0 0 1px rgba(200,153,58,0.2);
+  overflow: hidden;           /* keeps border-radius on children */
+}
+
+/* Gold top accent */
+.letter-gold-bar {
+  flex-shrink: 0;
+  height: 4px;
+  background: linear-gradient(90deg, transparent, var(--gold), transparent);
+}
+
+/* Scrollable body */
+.letter-inner {
+  flex: 1;
+  overflow-y: auto;
+  padding: 1.6rem 1.8rem 1rem;
+  scrollbar-width: thin;
+  scrollbar-color: var(--rose) transparent;
+}
+
+.letter-inner::-webkit-scrollbar       { width: 5px; }
+.letter-inner::-webkit-scrollbar-track { background: transparent; }
+.letter-inner::-webkit-scrollbar-thumb { background: var(--rose); border-radius: 10px; }
+
+/* Letter header */
+.letter-header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 0.7rem;
+  margin-bottom: 1.2rem;
+}
+
+.letter-title {
+  font-family: var(--font-display);
+  font-size: 1.2rem;
+  font-style: italic;
+  color: var(--crimson);
+  text-align: center;
+  line-height: 1.3;
+}
+
+.letter-ornament { color: var(--gold); font-size: 0.85rem; }
+
+/* Letter body text */
+.letter-body {
+  font-family: var(--font-display);
+  font-size: 0.93rem;
+  line-height: 1.85;
+  color: #4a2030;
+}
+
+.letter-body p { margin-bottom: 1rem; }
+
+.salutation {
+  font-style: italic;
+  font-weight: 600;
+  color: var(--crimson);
+}
+
+.closing {
+  margin-top: 1.4rem;
+  font-style: italic;
+  text-align: right;
+  color: var(--crimson);
+}
+
+/* Typewriter cursor */
+.letter-body.typing::after {
+  content: '|';
+  animation: blink 0.7s step-end infinite;
+  color: var(--rose);
+}
+
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50%       { opacity: 0; }
+}
+
+/* ── Close Button — always pinned at card bottom, never inside scroll ── */
+.btn-close {
+  flex-shrink: 0;
+  display: block;
+  width: 100%;
+  padding: 0.9rem 1rem;
+  background: linear-gradient(135deg, #fff0f4 0%, #ffe4ec 100%);
+  border: none;
+  border-top: 1.5px solid rgba(200,153,58,0.3);
+  color: var(--crimson);
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.95rem;
+  letter-spacing: 0.03em;
+  cursor: pointer;
+  transition: background 0.25s, color 0.25s;
+}
+
+.btn-close:hover {
+  background: var(--crimson);
+  color: #fff;
+}
+
+/* ---------- Polaroid Frames ---------- */
+.photo-frame {
+  flex-shrink: 0;
+  width: 160px;
+  background: #fff;
+  padding: 10px 10px 38px;
+  border-radius: 2px;
+  box-shadow: 0 8px 28px rgba(0,0,0,0.18);
+  opacity: 0;
+  transition: opacity 0.7s ease 0.3s, transform 0.7s var(--ease) 0.3s;
+  margin-top: 2rem; /* align nicely with letter top */
+}
+
+.photo-frame.visible { opacity: 1; }
+
+.photo-left  { transform: rotate(-4deg); }
+.photo-right { transform: rotate(4deg);  }
+.photo-left.visible  { transform: rotate(-4deg); }
+.photo-right.visible { transform: rotate(4deg);  }
+
+.photo-frame img {
+  display: block;
+  width: 100%;
+  aspect-ratio: 1;
+  object-fit: cover;
+  border-radius: 2px;
+  box-shadow: 0 2px 10px rgba(0,0,0,0.12);
+}
+
+.photo-caption {
+  font-family: var(--font-display);
+  font-style: italic;
+  font-size: 0.8rem;
+  color: var(--crimson);
+  text-align: center;
+  margin-top: 8px;
+}
+
+/* ============================================================
+   RESPONSIVE
+   ============================================================ */
+@media (max-width: 760px) {
+  .envelope { width: 320px; height: 220px; }
+
+  .envelope-flap {
+    border-left-width:  160px;
+    border-right-width: 160px;
+    border-top-width:   110px;
+  }
+  .envelope-front-left  { border-right-width: 160px; border-bottom-width: 110px; }
+  .envelope-front-right { border-left-width:  160px; border-bottom-width: 110px; }
+  .envelope-front-bottom {
+    border-left-width:  160px;
+    border-right-width: 160px;
+    border-bottom-width: 110px;
+  }
+
+  /* Stack vertically on mobile */
+  .letter-stage {
+    flex-direction: column;
+    align-items: center;
+    gap: 1.5rem;
+    padding-top: 0.5rem;
+  }
+
+  .letter-card {
+    flex: none;
+    width: 100%;
+    max-width: 360px;
+    max-height: 70vh;
+  }
+
+  /* Photos side by side below letter */
+  .photo-frame {
+    width: 130px;
+    margin-top: 0;
+  }
+
+  .photo-left, .photo-right {
+    order: 2; /* move photos below letter card */
+  }
+
+  .letter-card { order: 1; }
+
+  /* row of photos */
+  .letter-stage { flex-wrap: wrap; }
+  .photo-frame  { flex: 0 0 130px; }
+}
+
+@media (max-width: 400px) {
+  .envelope { width: 290px; height: 200px; }
+  .envelope-flap {
+    border-left-width: 145px; border-right-width: 145px; border-top-width: 100px;
+  }
+  .envelope-front-left  { border-right-width: 145px; border-bottom-width: 100px; }
+  .envelope-front-right { border-left-width:  145px; border-bottom-width: 100px; }
+  .envelope-front-bottom {
+    border-left-width: 145px; border-right-width: 145px; border-bottom-width: 100px;
+  }
+}

@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Happy First Monthsary 💌</title>
+  <link rel="stylesheet" href="style.css" />
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Lato:wght@300;400&display=swap" rel="stylesheet" />
+</head>
+<body>
+
+  <!-- Floating hearts background -->
+  <div class="hearts-container" id="heartsContainer"></div>
+
+  <!-- ── STAGE 1: Envelope (shown on load) ── -->
+  <section class="envelope-stage" id="envelopeStage">
+
+    <p class="tagline">A little something for you 💌</p>
+
+    <!-- Envelope -->
+    <div class="envelope" id="envelope">
+      <div class="envelope-back"></div>
+      <div class="envelope-flap" id="envelopeFlap"></div>
+      <div class="envelope-body">
+        <div class="envelope-seal" id="envelopeSeal">❤️</div>
+      </div>
+      <div class="envelope-front-left"></div>
+      <div class="envelope-front-right"></div>
+      <div class="envelope-front-bottom"></div>
+    </div>
+
+    <button class="btn-open" id="btnOpen">Open ❤️</button>
+
+  </section>
+
+  <!-- ── STAGE 2: Letter modal (shown after open) ── -->
+  <section class="letter-stage" id="letterStage" aria-hidden="true">
+
+    <!-- Left polaroid -->
+    <div class="photo-frame photo-left" id="photoLeft">
+      <img src="images/photo1.jpg" alt="Our Photo" />
+      <p class="photo-caption">Us ❤️</p>
+    </div>
+
+    <!-- Letter card -->
+    <div class="letter-card" id="letterCard">
+
+      <!-- Gold top bar -->
+      <div class="letter-gold-bar"></div>
+
+      <!-- Scrollable content -->
+      <div class="letter-inner" id="letterInner">
+
+        <div class="letter-header">
+          <span class="letter-ornament">✦</span>
+          <h1 class="letter-title">Happy First Monthsary</h1>
+          <span class="letter-ornament">✦</span>
+        </div>
+
+        <div class="letter-body" id="letterBody">
+          <p class="salutation">Dear Love,</p>
+
+          <p>
+            It has been one whole month since the day you became mine — and
+            somehow, every single hour of it has felt like a gift I didn't
+            know I was allowed to ask for.
+          </p>
+
+          <p>
+            <!-- ✏️ Replace this paragraph with your own message. -->
+            [Replace this text with your own heartfelt message. Tell them
+            what this month has meant to you, a favourite memory you share,
+            or simply why you're grateful they're in your life.]
+          </p>
+
+          <p>
+            Every day with you teaches me something new about what it means
+            to feel truly seen. Thank you for your patience, your laughter,
+            and the little things you do that you don't even realise make my
+            world brighter.
+          </p>
+
+          <p>Here's to many more months — and everything that comes after. 🌹</p>
+
+          <p class="closing">
+            With all my love,<br />
+            <em>[Your Name]</em>
+          </p>
+        </div>
+
+      </div><!-- /letter-inner -->
+
+      <!-- ── Close button — always visible, never inside scroll ── -->
+      <button class="btn-close" id="btnClose">✕ Close &amp; Reset</button>
+
+    </div><!-- /letter-card -->
+
+    <!-- Right polaroid -->
+    <div class="photo-frame photo-right" id="photoRight">
+      <img src="images/photo2.jpg" alt="Our Photo" />
+      <p class="photo-caption">Always ❤️</p>
+    </div>
+
+  </section>
+
+  <!-- Background music (uncomment src and the playMusic() call in script.js) -->
+  <!--
+  <audio id="bgMusic" loop>
+    <source src="audio/background.mp3" type="audio/mpeg" />
+  </audio>
+  -->
+
+  <script src="script.js"></script>
+</body>
+</html>
