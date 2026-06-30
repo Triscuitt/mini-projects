@@ -1,0 +1,680 @@
+/* =========================================================
+   Moonlight Love — Stylesheet
+   Palette: navy blue, deep purple, silver, soft pink
+   ========================================================= */
+
+:root {
+  --navy-deep: #0b0c2a;
+  --navy-mid: #1b1640;
+  --purple: #4a3f8c;
+  --purple-soft: #8b7bd8;
+  --silver: #e9e6ff;
+  --pink: #ffb6d9;
+  --pink-soft: #ffd9ec;
+  --pink-glow: #ff8fc7;
+  --moon-color: #fff8e7;
+  --grass-dark: #161033;
+  --grass-light: #2b1f5e;
+  --shadow: rgba(10, 8, 35, 0.6);
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html, body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  height: 100%;
+  overflow-x: hidden;
+  font-family: 'Segoe UI', 'Trebuchet MS', sans-serif;
+  background: var(--navy-deep);
+}
+
+body {
+  position: relative;
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+}
+
+/* =========================================================
+   SKY
+   ========================================================= */
+
+.sky {
+  position: fixed;
+  inset: 0;
+  background: linear-gradient(
+    to bottom,
+    #06071c 0%,
+    #100c33 30%,
+    #221a4d 55%,
+    #3a2a66 75%,
+    #4c3477 100%
+  );
+  overflow: hidden;
+  z-index: 0;
+}
+
+/* Stars */
+.stars {
+  position: absolute;
+  inset: 0;
+}
+
+.star {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  background: var(--silver);
+  border-radius: 50%;
+  box-shadow: 0 0 4px 1px rgba(233, 230, 255, 0.8);
+  animation: twinkle ease-in-out infinite;
+}
+
+@keyframes twinkle {
+  0%, 100% { opacity: 0.25; transform: scale(0.8); }
+  50% { opacity: 1; transform: scale(1.3); }
+}
+
+/* Moon */
+.moon {
+  position: absolute;
+  top: 7%;
+  right: 12%;
+  width: 130px;
+  height: 130px;
+  border-radius: 50%;
+  background: radial-gradient(circle at 35% 30%, #fffef2, var(--moon-color) 60%, #f3e9c7 100%);
+  box-shadow:
+    0 0 40px 10px rgba(255, 248, 231, 0.55),
+    0 0 90px 30px rgba(255, 248, 231, 0.3);
+  z-index: 1;
+}
+
+.moon-glow {
+  position: absolute;
+  inset: -40px;
+  border-radius: 50%;
+  background: radial-gradient(circle, rgba(255, 248, 231, 0.25) 0%, rgba(255, 248, 231, 0) 70%);
+  animation: moonPulse 4s ease-in-out infinite;
+}
+
+@keyframes moonPulse {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.15); opacity: 1; }
+}
+
+.moon-craters {
+  position: absolute;
+  inset: 0;
+}
+
+.crater {
+  position: absolute;
+  border-radius: 50%;
+  background: rgba(220, 205, 165, 0.45);
+}
+
+.c1 { width: 18px; height: 18px; top: 25px; left: 30px; }
+.c2 { width: 12px; height: 12px; top: 60px; left: 70px; }
+.c3 { width: 9px;  height: 9px;  top: 85px; left: 35px; }
+
+/* Clouds */
+.clouds {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.cloud {
+  position: absolute;
+  background: rgba(233, 230, 255, 0.18);
+  border-radius: 100px;
+  filter: blur(1px);
+}
+
+.cloud::before,
+.cloud::after {
+  content: "";
+  position: absolute;
+  background: inherit;
+  border-radius: 50%;
+}
+
+.cloud1 {
+  width: 180px; height: 50px;
+  top: 18%; left: -20%;
+  animation: drift 55s linear infinite;
+}
+.cloud1::before { width: 90px; height: 70px; top: -35px; left: 20px; }
+.cloud1::after { width: 70px; height: 55px; top: -25px; left: 90px; }
+
+.cloud2 {
+  width: 140px; height: 40px;
+  top: 35%; left: -25%;
+  animation: drift 75s linear infinite;
+  animation-delay: -20s;
+}
+.cloud2::before { width: 70px; height: 50px; top: -25px; left: 15px; }
+.cloud2::after { width: 55px; height: 40px; top: -18px; left: 70px; }
+
+.cloud3 {
+  width: 200px; height: 55px;
+  top: 10%; left: -30%;
+  animation: drift 90s linear infinite;
+  animation-delay: -45s;
+}
+.cloud3::before { width: 100px; height: 75px; top: -38px; left: 25px; }
+.cloud3::after { width: 80px; height: 60px; top: -28px; left: 110px; }
+
+@keyframes drift {
+  0% { transform: translateX(0); }
+  100% { transform: translateX(160vw); }
+}
+
+/* Fireflies */
+.fireflies {
+  position: absolute;
+  inset: 0;
+}
+
+.firefly {
+  position: absolute;
+  width: 5px;
+  height: 5px;
+  border-radius: 50%;
+  background: var(--pink-soft);
+  box-shadow: 0 0 8px 3px rgba(255, 217, 236, 0.8);
+  animation: fireflyMove linear infinite, fireflyBlink 2.2s ease-in-out infinite;
+}
+
+@keyframes fireflyBlink {
+  0%, 100% { opacity: 0.2; }
+  50% { opacity: 1; }
+}
+
+/* Floating hearts */
+.hearts-container {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.floating-heart {
+  position: absolute;
+  bottom: -5%;
+  font-size: 18px;
+  color: var(--pink-glow);
+  text-shadow: 0 0 8px rgba(255, 143, 199, 0.9);
+  animation: floatUp linear forwards;
+  opacity: 0.9;
+}
+
+@keyframes floatUp {
+  0% { transform: translateY(0) translateX(0) rotate(0deg); opacity: 0; }
+  10% { opacity: 1; }
+  100% { transform: translateY(-110vh) translateX(var(--drift, 20px)) rotate(20deg); opacity: 0; }
+}
+
+/* =========================================================
+   FIELD / HILL
+   ========================================================= */
+
+.field {
+  position: relative;
+  z-index: 1;
+  width: 100%;
+  height: 32vh;
+  margin-top: auto;
+}
+
+.hill {
+  position: absolute;
+  bottom: 0;
+  left: -10%;
+  width: 120%;
+  height: 100%;
+  border-radius: 50% 50% 0 0 / 25% 25% 0 0;
+}
+
+.hill-back {
+  background: linear-gradient(to top, var(--grass-light), #382a6e);
+  height: 85%;
+  opacity: 0.85;
+}
+
+.hill-front {
+  background: linear-gradient(to top, #0d0926, var(--grass-dark));
+  height: 65%;
+}
+
+.grass-glow {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  height: 40%;
+  background: radial-gradient(ellipse at 50% 100%, rgba(255, 217, 236, 0.18), transparent 70%);
+  pointer-events: none;
+}
+
+/* =========================================================
+   SCENE — chibi + speech bubble
+   ========================================================= */
+
+.scene {
+  position: relative;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-end;
+  padding-bottom: 2vh;
+}
+
+/* Speech bubble */
+.speech-bubble {
+  position: relative;
+  background: var(--silver);
+  color: #2b2350;
+  padding: 14px 22px;
+  border-radius: 22px;
+  border: 3px solid #2b2350;
+  font-size: 1.05rem;
+  font-weight: 700;
+  max-width: 260px;
+  text-align: center;
+  margin-bottom: 14px;
+  box-shadow: 0 4px 0 #2b2350, 0 0 20px rgba(255, 182, 217, 0.5);
+  opacity: 0;
+  transform: scale(0.4) translateY(20px);
+  animation: bubblePop 0.6s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s forwards;
+}
+
+.speech-bubble p {
+  margin: 0;
+  transition: opacity 0.3s ease;
+}
+
+@keyframes bubblePop {
+  0% { opacity: 0; transform: scale(0.3) translateY(30px); }
+  70% { opacity: 1; transform: scale(1.08) translateY(-4px); }
+  100% { opacity: 1; transform: scale(1) translateY(0); }
+}
+
+.bubble-pointer {
+  position: absolute;
+  bottom: -14px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 0;
+  height: 0;
+  border-left: 10px solid transparent;
+  border-right: 10px solid transparent;
+  border-top: 16px solid #2b2350;
+}
+
+.bubble-pointer::before {
+  content: "";
+  position: absolute;
+  top: -19px;
+  left: -7px;
+  width: 0;
+  height: 0;
+  border-left: 7px solid transparent;
+  border-right: 7px solid transparent;
+  border-top: 13px solid var(--silver);
+}
+
+/* Chibi wrapper for bobbing + sway */
+.chibi-wrap {
+  position: relative;
+  width: 140px;
+  height: 200px;
+  animation: bob 3s ease-in-out infinite;
+}
+
+@keyframes bob {
+  0%, 100% { transform: translateY(0) rotate(0deg); }
+  50% { transform: translateY(-8px) rotate(1deg); }
+}
+
+.chibi {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  animation: sway 4s ease-in-out infinite;
+  transform-origin: bottom center;
+}
+
+@keyframes sway {
+  0%, 100% { transform: rotate(-1.2deg); }
+  50% { transform: rotate(1.2deg); }
+}
+
+.chibi-shadow {
+  position: absolute;
+  bottom: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 80px;
+  height: 14px;
+  background: radial-gradient(ellipse, rgba(0,0,0,0.45), transparent 70%);
+  border-radius: 50%;
+  z-index: 0;
+}
+
+/* Head */
+.head {
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 92px;
+  height: 86px;
+  background: #ffd9b8;
+  border-radius: 50% 50% 46% 46%;
+  z-index: 3;
+}
+
+.hair-back {
+  position: absolute;
+  top: -6px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 100px;
+  height: 70px;
+  background: #3a2a55;
+  border-radius: 50% 50% 40% 40%;
+  z-index: 2;
+}
+
+.hair-front {
+  position: absolute;
+  top: -14px;
+  left: -4px;
+  width: 100px;
+  height: 56px;
+  background: #4b3470;
+  border-radius: 50% 50% 60% 60% / 60% 60% 40% 40%;
+  z-index: 4;
+}
+
+.hair-front::before,
+.hair-front::after {
+  content: "";
+  position: absolute;
+  bottom: -6px;
+  width: 22px;
+  height: 30px;
+  background: inherit;
+  border-radius: 0 0 50% 50%;
+}
+.hair-front::before { left: 6px; }
+.hair-front::after { right: 6px; }
+
+.eye {
+  position: absolute;
+  top: 38px;
+  width: 8px;
+  height: 10px;
+  background: #2b2350;
+  border-radius: 50%;
+  z-index: 5;
+  animation: blink 4.5s ease-in-out infinite;
+}
+
+.eye-left { left: 26px; }
+.eye-right { right: 26px; }
+
+@keyframes blink {
+  0%, 90%, 100% { transform: scaleY(1); }
+  95% { transform: scaleY(0.1); }
+}
+
+.blush {
+  position: absolute;
+  top: 50px;
+  width: 14px;
+  height: 8px;
+  background: var(--pink);
+  border-radius: 50%;
+  opacity: 0.7;
+  z-index: 5;
+}
+.blush-left { left: 14px; }
+.blush-right { right: 14px; }
+
+.mouth {
+  position: absolute;
+  top: 58px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 10px;
+  height: 6px;
+  border-radius: 0 0 10px 10px;
+  border-bottom: 2.5px solid #a05a4a;
+  border-left: 2.5px solid transparent;
+  border-right: 2.5px solid transparent;
+  z-index: 5;
+}
+
+/* Body */
+.body {
+  position: absolute;
+  top: 76px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 76px;
+  height: 70px;
+  background: linear-gradient(to bottom, #371bc2, #1d0a70);
+  border-radius: 36px 36px 30px 30px;
+  z-index: 2;
+}
+
+.arm {
+  position: absolute;
+  top: 10px;
+  width: 18px;
+  height: 44px;
+  background: #563bda;
+  border-radius: 12px;
+}
+
+.arm-left {
+  left: -10px;
+  transform: rotate(24deg);
+  transform-origin: top center;
+}
+
+.arm-right {
+  right: -10px;
+  transform: rotate(-34deg);
+  transform-origin: top center;
+}
+
+/* Bouquet held by the chibi */
+.bouquet {
+  position: absolute;
+  top: 122px;
+  left: 50%;
+  transform: translateX(-6px);
+  width: 40px;
+  height: 50px;
+  z-index: 4;
+}
+
+.stem {
+  position: absolute;
+  bottom: 0;
+  left: 17px;
+  width: 4px;
+  height: 22px;
+  background: #4f9a5e;
+  border-radius: 2px;
+}
+
+.flower {
+  position: absolute;
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+  background: radial-gradient(circle, #fff 0%, var(--pink) 70%);
+  box-shadow: 0 0 10px rgba(255, 182, 217, 0.8);
+}
+
+.f1 { top: 6px; left: 4px; animation: glowPulse 2.4s ease-in-out infinite; }
+.f2 { top: 0px; left: 16px; background: radial-gradient(circle, #fff 0%, var(--pink-glow) 70%); animation: glowPulse 2.4s ease-in-out infinite 0.4s; }
+.f3 { top: 8px; left: 24px; animation: glowPulse 2.4s ease-in-out infinite 0.8s; }
+
+@keyframes glowPulse {
+  0%, 100% { box-shadow: 0 0 6px rgba(255, 182, 217, 0.6); transform: scale(1); }
+  50% { box-shadow: 0 0 16px rgba(255, 182, 217, 1); transform: scale(1.1); }
+}
+
+/* Legs */
+.legs {
+  position: absolute;
+  top: 140px;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60px;
+  height: 30px;
+}
+
+.leg {
+  position: absolute;
+  bottom: 0;
+  width: 20px;
+  height: 28px;
+  background: #2b2350;
+  border-radius: 0 0 10px 10px;
+}
+.leg-left { left: 4px; }
+.leg-right { right: 4px; }
+
+/* Sparkle burst (on forgive click) */
+.sparkle-burst {
+  position: absolute;
+  inset: -30px;
+  pointer-events: none;
+  z-index: 6;
+}
+
+.sparkle {
+  position: absolute;
+  width: 8px;
+  height: 8px;
+  background: var(--pink-soft);
+  border-radius: 50%;
+  box-shadow: 0 0 10px 3px rgba(255, 217, 236, 0.9);
+  opacity: 0;
+  animation: sparklePop 1s ease-out forwards;
+}
+
+@keyframes sparklePop {
+  0% { opacity: 0; transform: scale(0) translate(0, 0); }
+  30% { opacity: 1; }
+  100% { opacity: 0; transform: scale(1) translate(var(--sx), var(--sy)); }
+}
+
+/* =========================================================
+   BUTTON
+   ========================================================= */
+
+.action-area {
+  position: relative;
+  z-index: 3;
+  display: flex;
+  justify-content: center;
+  padding: 22px 0 36px;
+}
+
+.forgive-btn {
+  position: relative;
+  padding: 14px 34px;
+  font-size: 1.05rem;
+  font-weight: 700;
+  letter-spacing: 0.3px;
+  color: #2b1144;
+  background: linear-gradient(135deg, var(--pink-soft), var(--pink-glow));
+  border: none;
+  border-radius: 40px;
+  cursor: pointer;
+  box-shadow: 0 0 18px rgba(255, 143, 199, 0.6), 0 4px 0 #b1538a;
+  transition: transform 0.18s ease, box-shadow 0.3s ease, background 0.4s ease;
+}
+
+.forgive-btn:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 0 28px rgba(255, 143, 199, 0.85), 0 6px 0 #b1538a;
+}
+
+.forgive-btn:active {
+  transform: translateY(0px);
+  box-shadow: 0 0 18px rgba(255, 143, 199, 0.6), 0 2px 0 #b1538a;
+}
+
+.forgive-btn.thanked {
+  background: linear-gradient(135deg, #ffe1f1, var(--pink));
+  box-shadow: 0 0 30px rgba(255, 182, 217, 1), 0 4px 0 #b1538a;
+  animation: thankPulse 1.4s ease-in-out infinite;
+}
+
+@keyframes thankPulse {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+}
+
+/* Moon brighter state triggered via JS class on body */
+body.forgiven .moon {
+  box-shadow:
+    0 0 70px 20px rgba(255, 248, 231, 0.85),
+    0 0 140px 50px rgba(255, 248, 231, 0.45);
+}
+
+/* =========================================================
+   RESPONSIVE
+   ========================================================= */
+
+@media (max-width: 600px) {
+  .moon {
+    width: 90px;
+    height: 90px;
+    top: 5%;
+    right: 8%;
+  }
+
+  .chibi-wrap {
+    width: 110px;
+    height: 160px;
+    transform: scale(0.9);
+  }
+
+  .speech-bubble {
+    max-width: 200px;
+    font-size: 0.92rem;
+    padding: 10px 16px;
+  }
+
+  .forgive-btn {
+    padding: 12px 26px;
+    font-size: 0.95rem;
+  }
+
+  .field {
+    height: 26vh;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+  }
+}
