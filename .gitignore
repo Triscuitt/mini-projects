@@ -1,0 +1,67 @@
+# System files
+*.xml
+.Ld2VirtualBox/
+.Ld9VirtualBox/
+.android/
+.cache/
+.claude.json
+.claude.json.backup
+.claude/
+.config/
+.gitconfig
+.gradle/
+.headroom/
+.jdks/
+.lesshst
+.local/
+.m2/
+.nbi/
+.node_repl_history
+.omniroute/
+.packettracer
+.vscode-shared/
+.vscode/
+3D Objects/
+AppData/
+Cisco Packet Tracer 8.2.2/
+Contacts/
+Desktop/
+Downloads/
+Favorites/
+IntelGraphicsProfiles/
+Links/
+Microsoft/
+Music/
+NTUSER.DAT*
+OneDrive/
+Pictures/
+Saved Games/
+Searches/
+Videos/
+WPS Cloud/
+Web-Based-TimeComplexity-Project/
+Zomboid/
+adt_w3_activity_starter/
+assignment1/
+campus_events_app/
+curseforge/
+*.log
+mumu_boot.txt
+ntuser.dat*
+ntuser.ini
+student/
+trjistan/
+
+# Node modules
+node_modules/
+npm-debug.log
+
+# IDE
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db

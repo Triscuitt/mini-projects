@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Message Looper</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="container">
+        <h1>Message Looper</h1>
+        <label>Input a message</label>
+        <input id="textInput" type="text" placeholder="Enter your message here">
+
+        <label>How many times?</label>
+        <div class="number-input-wrapper">
+            <button class="decrement" id="decrementBtn">−</button>
+            <input id="looper" type="number" placeholder="0" min="1" inputmode="numeric">
+            <button class="increment" id="incrementBtn">+</button>
+        </div>
+
+        <button id="submitMsg" type="submit">Loop It!</button>
+        <div id="output"></div>
+        <button id="copyBtn" class="copy-btn hidden">📋 Copy to Clipboard</button>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html>

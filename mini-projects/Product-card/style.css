@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Chango&family=Old+Standard+TT:ital,wght@0,400;0,700;1,400&display=swap");
+
+body {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    background-color: rgb(228, 125, 51);
+    margin: 0;
+}
+
+/* Main Container  */
+.main {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    margin-bottom: 20px;
+}
+
+/* Utilities  */
+
+.title {
+    font-family: 'Chango', sans-serif, Arial;
+    font-weight: 400;
+    font-size: 40px;
+    color: white;
+    margin-bottom: 30px;
+}
+
+.subtitle {
+    display: flex;
+    font-family: 'Old Standard TT', sans-serif, Arial;
+    font-weight: 400;
+    font-weight: bold;
+    font-size: 40px;
+    color: rgb(5, 51, 119);
+}
+
+.content-subtitle {
+    font-family: 'Old Standard TT', sans-serif, Arial;
+    font-weight: bold;
+    color: black;
+    margin-bottom: 10px;
+}
+
+.material-icons {
+    font-size: 30px !important;
+    padding: 15px;
+    background-color: #dfd9d9;
+    border-radius: 10px;
+    margin-bottom: 20px;
+    border: black solid 1px;
+}
+
+button {
+    background-color: rgb(241, 106, 158);
+    border: none;
+    border-radius: 10px;
+    padding: 5px 25px;
+    color: white;
+}
+
+/* Container  */
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    background-color: rgb(237, 245, 245);
+    padding: 20px 25px 20px 25px;
+    gap: 20px;
+    border-radius: 15px;
+}
+
+/* Card  */
+
+.card {
+    display: flex;
+    justify-content: center;
+    text-align: center;
+    max-width: 350px;
+    border: black solid 1px;
+    border-style: none;
+}
+
+.card-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 10px;
+    background-color: rgb(233, 233, 233);
+    border-radius: 10px;
+    box-shadow: black 2px ;
+    border: black solid 1px;
+}
+
+.first-row, .second-row {
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+}
+
+.card-content p {
+    margin-bottom: 20px;
+}
+
+/* Hover */
+
+button:hover {
+    background-color: rgb(128, 14, 143);
+    font-weight: bold;
+    transition: background ease 1.2;
+}
+
+.card-content:hover {
+    background: linear-gradient(#e2c51e, #8a2be2, #ffffff);
+    transition: background ease 1.2;
+}
