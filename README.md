@@ -53,6 +53,3 @@ This repository serves as a learning portfolio showcasing:
 
 Each project folder contains all necessary files. Simply open the `index.html` files in your browser or review the JavaScript files for code walkthroughs.
 
----
-
-**Happy coding! 💡**
